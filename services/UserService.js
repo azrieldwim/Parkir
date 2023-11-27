@@ -34,7 +34,7 @@ module.exports = {
     updateByID: async (user_id, data) => {
         try {
             let result = await User.update(data, {
-                where: { id: user_id }
+                where: { user_id: user_id }
             });
             return { success: true, result: result };
         } catch (err) {
@@ -44,7 +44,7 @@ module.exports = {
 
     deleteByID: async (user_id) => {
         try {
-            let result = await User.destroy({ where: { id: user_id } });
+            let result = await User.destroy({ where: { user_id: user_id } });
             return { success: true, result: result };
         } catch (err) {
             return { success: false, result: err };

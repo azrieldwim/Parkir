@@ -3,7 +3,19 @@ const sequelize = require('../database');
 
 const Reservasi = sequelize.define('reservasi', {
     reservasi_id: { type: Sequelize.INTEGER, allowNull: false, autoIncrement: true, primaryKey: true },
-    waktu_reservasi: { type: Sequelize.DATE }
+    user_id: { type: Sequelize.INTEGER, allowNull: false },
+    parkir_id: { type: Sequelize.INTEGER, allowNull: false },
+    waktu_reservasi: { type: Sequelize.DATE },
+    createdAt: {
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+        allowNull: false
+    },
+    updatedAt: {
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+        allowNull: false
+    }
 }, {
     comment: "This is the table for reservations",
     timestamps: true,
@@ -12,7 +24,4 @@ const Reservasi = sequelize.define('reservasi', {
 });
 
 module.exports = Reservasi;
-
-Reservasi.belongsTo(User, { foreignKey: 'user_id' });
  
-Reservasi.belongsTo(SlotParkir, { foreignKey: 'parkir_id' });
